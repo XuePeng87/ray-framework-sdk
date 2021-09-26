@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.xuepeng.ray.framework.sdk.mgt.mapper.SysUserMapper">
+
+    <select id="findNoDepartmentUsers"
+            resultType="cc.xuepeng.ray.framework.sdk.mgt.entity.SysUser">
+        SELECT * FROM `sys_user`
+        WHERE NOT EXISTS
+        (
+        SELECT `id` FROM `sys_dept_user_relation`
+        WHERE `sys_user`.`id` = `user_id`
+        and `dept_id` <![CDATA[ <> ]]> #{deptId}
+        )
+        AND `user_availabled` = 1 AND `fixed` = 0 AND `deleted` = 0
+    </select>
+
+</mapper>

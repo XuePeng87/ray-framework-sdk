@@ -1,0 +1,44 @@
+spring:
+  h2:
+    console:
+      enabled: true
+      path: /h2
+  datasource:
+    url: jdbc:h2:mem:testdb;MODE=MYSQL;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=false
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: sa
+  sql:
+    init:
+      platform: h2
+      username: sa
+      password: sa
+      schema-locations: classpath:db/*.sql
+      mode: always
+  mail:
+    host: smtp.qq.com
+    username: 100103081@qq.com
+    password: ltsjolgvxshibiii
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+ray:
+  framework:
+    sdk:
+      mgt:
+        default-password: '000000'
+        cache:
+          pin-code-key: 'YC:USER:RETRIEVE-PASSWORD:PINCODE:CONTEXT:'
+          pin-code-time: 15
+          send-interval-key: 'YC:USER:RETRIEVE-PASSWORD:PINCODE:INTERVAL:'
+          send-interval-time: 60
+          send-upper-limit-key: 'YC:USER:RETRIEVE-PASSWORD:PINCODE:SEND-UPPER-LIMIT:%s:%s'
+          send-upper-limit-count: 5
