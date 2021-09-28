@@ -21,6 +21,8 @@ import java.util.stream.Collectors;
 @Service
 public class SysRoleApiRelationServiceImpl extends ServiceImpl<SysRoleApiRelationMapper, SysRoleApiRelation> implements SysRoleApiRelationService {
 
+    private static final String PASS_URL = "/**";
+
     /**
      * 根据角色主键删除角色与API的关系。
      *
@@ -55,7 +57,10 @@ public class SysRoleApiRelationServiceImpl extends ServiceImpl<SysRoleApiRelatio
     @Override
     public List<Long> findRoleIdsByApi(final String api) {
         final QueryWrapper<SysRoleApiRelation> wrapper = new QueryWrapper<>();
-        wrapper.lambda().eq(SysRoleApiRelation::getApiUrl, api);
+        wrapper.lambda()
+                .eq(SysRoleApiRelation::getApiUrl, api)
+                .or()
+                .eq(SysRoleApiRelation::getApiUrl, PASS_URL);
         final List<SysRoleApiRelation> sysRoleApiRelations = super.list(wrapper);
         return sysRoleApiRelations.stream()
                 .map(SysRoleApiRelation::getRoleId)

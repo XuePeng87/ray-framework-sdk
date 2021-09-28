@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>ray-framework-sdk-dependencies</artifactId>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
     <name>Ray Framework SDK Dependencies</name>
     <!-- 构建管理 -->
     <build>
@@ -34,12 +34,16 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
             </plugin>
+            <!-- 支持revision -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>flatten-maven-plugin</artifactId>
+            </plugin>
         </plugins>
     </build>
     <!-- 依赖管理 -->
     <dependencyManagement>
         <dependencies>
-            <!-- Yesway Framework -->
             <dependency>
                 <groupId>cc.xuepeng</groupId>
                 <artifactId>ray-framework-sdk-mgt</artifactId>
